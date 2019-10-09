@@ -7,7 +7,7 @@ const tmpArr = [{
   fName: 'Dinesh',
   lName: 'Nadimpalli',
   email: 'dinesh@gmail.com',
-  age: '',
+  age: 22,
   onlineStatus: true
 }]
 
@@ -17,7 +17,7 @@ class App extends Component{
       <div>
         <Header />
         <section className='main'>
-          <HeadLine header='Posts' desc='Click the button to render props' tmpArr={tmpArr}/>
+          <HeadLine header='Posts' desc='This is a sample post' tmpArr={tmpArr}/>
         </section>
       </div>
     );
