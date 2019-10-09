@@ -1,7 +1,5 @@
 import { types } from '../../actions/types'
 import postsReducer from './reducer'
-import reducer from './reducer';
-import { expression } from '@babel/template';
 
 
 describe('Posts reducer', ()=>{

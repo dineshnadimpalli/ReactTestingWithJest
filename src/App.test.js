@@ -1,9 +1,15 @@
 import React from 'react';
+import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom';
+import {store} from './createStore'
 import App from './App';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      div);
+      ReactDOM.unmountComponentAtNode(div);
 });

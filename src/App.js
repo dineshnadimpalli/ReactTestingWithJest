@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Header from './components/header/index';
 import HeadLine from './components/headLine/index';
+import Sharedbutton from './components/button/'
+import ListItem from './components//listItem'
+import { connect } from 'react-redux'
+import { fetchPosts } from './actions'
 import './app.scss'
+import SharedButton from './components/button/';
 
 const tmpArr = [{
   fName: 'Dinesh',
@@ -12,16 +17,73 @@ const tmpArr = [{
 }]
 
 class App extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+
+    }
+  }
+
+  fetch(){
+    console.log('fetch called')
+    this.props.getPosts()
+  }
+
   render(){
+
+    const {posts} = this.props;
+
+    const configButton = {
+      buttonText: 'Get posts',
+      emitEvent: ()=>{
+        this.fetch()
+      }
+    }
+
     return (
       <div>
         <Header />
         <section className='main'>
-          <HeadLine header='Posts' desc='This is a sample post' tmpArr={tmpArr}/>
+          <HeadLine 
+              header='Posts' 
+              desc='Click on the button to get the posts' 
+              tmpArr={tmpArr}
+          />
+          <SharedButton {...configButton} />
+          {
+            posts.length>0 && 
+            <div>
+              {
+                posts.map((post, index)=>{
+                  const {title, body} = post;
+                  const listConfig = {
+                    title,
+                    desc: body
+                  }
+
+                  return <ListItem {...listConfig} key={index}/>
+                })
+              }
+            </div>
+          }
         </section>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+  // console.log("state------", state)
+  return ({
+    posts: state.posts,
+  })
+}
+
+const mapDispatchToProps = (dispatch)=>({
+    getPosts: ()=>{
+      dispatch(fetchPosts())
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
