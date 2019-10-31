@@ -20,18 +20,31 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-
+      hidebtn: false
     }
   }
 
   fetch(){
     console.log('fetch called')
     this.props.getPosts()
+    this.hideButton()
+  }
+
+  hideButton = ()=>{
+    const { hidebtn } = this.state
+    this.setState({
+      hidebtn: !hidebtn
+    })
+  }
+
+  testReturnMethod = (a)=>{
+    return a+1
   }
 
   render(){
 
     const {posts} = this.props;
+    const { hidebtn } = this.state 
 
     const configButton = {
       buttonText: 'Get posts',
@@ -49,7 +62,11 @@ class App extends Component{
               desc='Click on the button to get the posts' 
               tmpArr={tmpArr}
           />
-          <SharedButton {...configButton} />
+          {
+            !hidebtn && 
+            <SharedButton {...configButton} />
+          }
+          
           {
             posts.length>0 && 
             <div>

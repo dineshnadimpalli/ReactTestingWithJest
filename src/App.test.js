@@ -49,4 +49,18 @@ describe("Testing App component", () => {
     const component = findByTestAttr(wrapper, "appComponent");
     expect(component.length).toBe(1);
   });
+
+
+  it("hideButton method should change state as expected", ()=>{
+    const classInstance = wrapper.instance()
+    classInstance.hideButton()
+    const newState = classInstance.state.hidebtn 
+    expect(newState).toBe(true)
+  })
+
+  it("testReturnMethod method should change state as expected", ()=>{
+    const classInstance = wrapper.instance()
+    const newValue = classInstance.testReturnMethod(6)
+    expect(newValue).toBe(7)
+  })
 });
