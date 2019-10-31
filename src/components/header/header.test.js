@@ -5,8 +5,8 @@ import { findByTestAttr } from '../../utils/index'
 
 const setUp = (props={})=>{
     const component = shallow(<Header {...props}/>)
-    console.log(component.debug())
-    return component;
+    // console.log(component.debug())
+    return component
 }
 
 describe('Header component', ()=>{

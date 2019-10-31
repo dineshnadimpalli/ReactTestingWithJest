@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header/index';
 import HeadLine from './components/headLine/index';
-import Sharedbutton from './components/button/'
 import ListItem from './components//listItem'
 import { connect } from 'react-redux'
 import { fetchPosts } from './actions'
@@ -42,7 +41,7 @@ class App extends Component{
     }
 
     return (
-      <div>
+      <div className="App" data-test="appComponent">
         <Header />
         <section className='main'>
           <HeadLine 
